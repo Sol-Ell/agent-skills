@@ -190,6 +190,23 @@ The first command registers the marketplace; the second installs the plugin. Cod
 </details>
 
 <details>
+<summary><b>DeepSeek Harness</b></summary>
+
+Install as a native dsh bundle. The bundle registers all 25 skills with the
+harness skill registry; no skill body changes.
+
+```bash
+git clone https://github.com/Sol-Ell/agent-skills ~/.local/share/agent-skills
+dsh plugin --profile web add ~/.local/share/agent-skills
+```
+
+Then invoke a skill by its bare name, for example `/spec-driven-development`.
+See [docs/dsh-setup.md](docs/dsh-setup.md) for removal, verification,
+precedence, and current limits (skills only: no commands, personas, or hooks).
+
+</details>
+
+<details>
 <summary><b>Command Code</b></summary>
 
 Install natively with the built-in `cmd skills` command. Command Code clones the repo, discovers every `SKILL.md`, and installs into `.commandcode/skills/`:
@@ -361,6 +378,7 @@ The portable core stays in shared directories. Host-specific paths are native di
 | Gemini CLI adapter | `.gemini/commands/` (9 commands) | Gemini-native TOML command wrappers |
 | Antigravity CLI adapter | `commands/` (9 commands), `plugin.json` | Legacy TOML wrappers and the root plugin manifest; see the [known wrapper limitation](docs/antigravity-setup.md#lifecycle-workflows-and-command-compatibility) |
 | Codex adapter | `.codex-plugin/`, `.agents/plugins/` | Codex plugin metadata and marketplace registration; Codex consumes `skills/` directly |
+| DeepSeek Harness adapter | `dsh/`, `package.json` | Bundle layer publishing `skills/` through the native dsh skill registry; see [docs/dsh-setup.md](docs/dsh-setup.md) |
 | GitHub Copilot CLI adapter | `plugin.json` | Root plugin metadata; Copilot CLI discovers `skills/` by convention and does not register the lifecycle wrappers |
 | Contributor tooling | `scripts/` (13 scripts), `evals/` (25 case files), `.github/workflows/` | Validation, routing evals, and CI |
 | Documentation | `docs/` | Universal guidance and per-tool setup guides |
